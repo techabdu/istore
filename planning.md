@@ -113,10 +113,10 @@ Commit → `feat: added tenant models and migrations`
 ---
 
 ### 6. Authentication Flow
-- [ ] Configure Laravel Breeze/Fortify.
-- [ ] Setup login/register routes for developer and tenants.
-- [ ] Implement middleware for role-based access.
-- [ ] Create route guards for Developer Dashboard and Tenant Dashboards.
+- [x] Configure Laravel Breeze/Fortify.
+- [x] Setup login/register routes for developer and tenants.
+- [x] Implement middleware for role-based access.
+- [x] Create route guards for Developer Dashboard and Tenant Dashboards.
 
 **Checkpoint #6:**  
 Commit → `feat: authentication flow and role middleware`

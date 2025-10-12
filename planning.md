@@ -74,12 +74,12 @@ Commit → `feat: installed dependencies and verified setup`
 ---
 
 ### 3. Setup Multi-Tenancy
-- [ ] Configure `stancl/tenancy` according to docs.
-- [ ] Create **central database** for global tables (tenants, users, etc.).
-- [ ] Setup **tenant database** creation logic.
-- [ ] Update `.env` and `config/tenancy.php` for dynamic DB connections.
-- [ ] Create migration for `tenants` table in the central DB.
-- [ ] Test tenant creation manually via tinker.
+- [x] Configure `stancl/tenancy` according to docs.
+- [x] Create **central database** for global tables (tenants, users, etc.).
+- [x] Setup **tenant database** creation logic.
+- [x] Update `.env` and `config/tenancy.php` for dynamic DB connections.
+- [x] Create migration for `tenants` table in the central DB.
+- [x] Test tenant creation manually via tinker.
 
 **Checkpoint #3:**  
 Commit → `feat: setup stancl/tenancy and tenant db isolation`

@@ -51,8 +51,8 @@ It allows any LLM (ChatGPT, Gemini, Claude, etc.) to:
 ## 🏁 PROJECT INITIALIZATION
 
 ### 1. Setup Project Environment
-- [ ] Initialize Git repository (`git init`).
-- [ ] Push initial commit to GitHub.
+- [x] Initialize Git repository (`git init`).
+- [x] Push initial commit to GitHub.
 
 **Checkpoint #1:**  
 Commit → `chore: initialize laravel project and setup git`
@@ -60,13 +60,13 @@ Commit → `chore: initialize laravel project and setup git`
 ---
 
 ### 2. Install Core Dependencies
-- [ ] Install `livewire/livewire`.
-- [ ] Install `alpinejs` via CDN or Vite.
-- [ ] Install and configure TailwindCSS.
-- [ ] Install `stancl/tenancy` for multi-tenancy.
-- [ ] Install `barryvdh/laravel-dompdf` for PDF invoices.
-- [ ] Install `laravel/breeze` or `laravel/fortify` for authentication.
-- [ ] Run all migrations successfully.
+- [x] Install `livewire/livewire`.
+- [x] Install `alpinejs` via CDN or Vite.
+- [x] Install and configure TailwindCSS.
+- [x] Install `stancl/tenancy` for multi-tenancy.
+- [x] Install `barryvdh/laravel-dompdf` for PDF invoices.
+- [x] Install `laravel/breeze` or `laravel/fortify` for authentication.
+- [x] Run all migrations successfully.
 
 **Checkpoint #2:**  
 Commit → `feat: installed dependencies and verified setup`

@@ -18,7 +18,12 @@ class CreateTenantsTable extends Migration
         Schema::create('tenants', function (Blueprint $table) {
             $table->string('id')->primary();
 
-            // your custom columns may go here
+            $table->string('full_name');
+            $table->string('business_name');
+            $table->decimal('business_capital', 15, 2)->nullable();
+            $table->string('address')->nullable();
+            $table->string('phone_number')->nullable();
+            $table->string('status')->default('active');
 
             $table->timestamps();
             $table->json('data')->nullable();

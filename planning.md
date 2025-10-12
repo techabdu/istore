@@ -1,0 +1,281 @@
+# 🧭 iStore Build Plan — planning.md
+
+## 🤖 LLM USAGE GUIDE
+
+### Rules/Notes for LLM Agents:
+- Always review this file before starting any coding session.
+- Update progress by marking `[x]` when a step is completed.
+- Follow the commit message instructions after each checkpoint.
+- Maintain consistent code style and folder structure.
+- Push commits regularly to ensure sync between models and humans.
+- limit code changes to minimum.
+
+---
+
+### How to Use
+1. **Always begin by reading this file.**
+   - Check which steps are completed (`[x]`) and which remain (`[ ]`).
+2. **Continue from the first incomplete step.**
+   - Follow all substeps and checkpoints carefully.
+3. **After completing a step:**
+   - Mark it as `[x]`.
+   - Add the corresponding commit message from the checkpoint section.
+4. **Never skip a checkpoint.**
+   - Every checkpoint corresponds to a Git commit stage.
+5. **If you switch to another LLM,**
+   - Ask it to read this file and continue from the last unchecked step.
+
+---
+
+### Purpose
+This file serves as a **persistent build plan** for the iStore multi-tenant web app.  
+It allows any LLM (ChatGPT, Gemini, Claude, etc.) to:
+- Understand the entire project’s architecture and progress.
+- Resume development **exactly where the previous session stopped**.
+- Follow structured checklists and checkpoints for Git commits.
+
+---
+
+## 📘 PROJECT OVERVIEW
+
+**App Name:** iStore  
+**Tech Stack:** Laravel + Livewire + Alpine.js + TailwindCSS  
+**Multi-Tenancy:** `stancl/tenancy`  
+**Hosting:** Hostinger  
+**DB:** MySQL  
+**Pattern:** MVC  
+**Purpose:** Multi-tenant store management system for phone shops (inventory, sales, finance, users).  
+
+---
+
+## 🏁 PROJECT INITIALIZATION
+
+### 1. Setup Project Environment
+- [ ] Initialize Git repository (`git init`).
+- [ ] Push initial commit to GitHub.
+
+**Checkpoint #1:**  
+Commit → `chore: initialize laravel project and setup git`
+
+---
+
+### 2. Install Core Dependencies
+- [ ] Install `livewire/livewire`.
+- [ ] Install `alpinejs` via CDN or Vite.
+- [ ] Install and configure TailwindCSS.
+- [ ] Install `stancl/tenancy` for multi-tenancy.
+- [ ] Install `barryvdh/laravel-dompdf` for PDF invoices.
+- [ ] Install `laravel/breeze` or `laravel/fortify` for authentication.
+- [ ] Run all migrations successfully.
+
+**Checkpoint #2:**  
+Commit → `feat: installed dependencies and verified setup`
+
+---
+
+### 3. Setup Multi-Tenancy
+- [ ] Configure `stancl/tenancy` according to docs.
+- [ ] Create **central database** for global tables (tenants, users, etc.).
+- [ ] Setup **tenant database** creation logic.
+- [ ] Update `.env` and `config/tenancy.php` for dynamic DB connections.
+- [ ] Create migration for `tenants` table in the central DB.
+- [ ] Test tenant creation manually via tinker.
+
+**Checkpoint #3:**  
+Commit → `feat: setup stancl/tenancy and tenant db isolation`
+
+---
+
+## ⚙️ SYSTEM ARCHITECTURE SETUP
+
+### 4. Define Models & Migrations (Central)
+- [ ] Model: `Tenant` (full_name, business_name, business_capital, address, phone_number, status).
+- [ ] Model: `User` (name, email, password, role, tenant_id nullable).
+- [ ] Add seeders for Developer Super Admin.
+- [ ] Setup default `SuperAdmin`, `Admin`, and `Developer` roles.
+
+**Checkpoint #4:**  
+Commit → `feat: defined central models and roles`
+
+---
+
+### 5. Define Models & Migrations (Tenant)
+Each tenant DB contains:
+- [ ] `products` — id, name, category, ram, imei, storage, condition, purchase_price, selling_price, status, date.
+- [ ] `sales` — id, product_id, total_price, date.
+- [ ] `expenses` — id, title, description, amount, date.
+- [ ] `finances` — id, total_asset, total_expenses, total_debt, total_cash, capital, profit.
+- [ ] `invoices` — id, sale_id, invoice_number.
+
+**Checkpoint #5:**  
+Commit → `feat: added tenant models and migrations`
+
+---
+
+### 6. Authentication Flow
+- [ ] Configure Laravel Breeze/Fortify.
+- [ ] Setup login/register routes for developer and tenants.
+- [ ] Implement middleware for role-based access.
+- [ ] Create route guards for Developer Dashboard and Tenant Dashboards.
+
+**Checkpoint #6:**  
+Commit → `feat: authentication flow and role middleware`
+
+---
+
+## 🏗️ CORE FUNCTIONAL MODULES
+
+### 7. Developer Dashboard (Root Super Admin)
+- [ ] Create `DeveloperController` + Livewire components.
+- [ ] Pages:
+  - [ ] View all tenants.
+  - [ ] Approve / suspend tenants.
+  - [ ] Delete tenants.
+  - [ ] Access tenant analytics summary.
+- [ ] UI: Clean admin layout using TailwindCSS + Livewire.
+- [ ] Integrate data tables (search, filter, pagination).
+
+**Checkpoint #7:**  
+Commit → `feat: developer dashboard with tenant management`
+
+---
+
+### 8. Tenant Registration System
+- [ ] Create `TenantRegistrationController`.
+- [ ] Build registration form (Full Name, company name, business capital, address, phone number, admin email, password).
+- [ ] On registration, system auto-creates:
+  - [ ] Tenant DB (via `stancl/tenancy`).
+  - [ ] Tenant Super Admin user.
+- [ ] Redirect to tenant dashboard after registration.
+
+**Checkpoint #8:**  
+Commit → `feat: tenant registration flow with auto db creation`
+
+---
+
+### 9. Tenant Dashboard (Super Admin / Admin)
+- [ ] Build dashboard layout (company name in navbar).
+- [ ] Dashboard metrics: total sales, total expenses, stock count, profit summary.
+- [ ] Create separate navigation menus for:
+  - [ ] Super Admin (finance, users, reports)
+  - [ ] Admin (inventory, sales, invoices)
+- [ ] Add user role-based visibility for menu items.
+
+**Checkpoint #9:**  
+Commit → `feat: tenant dashboard layout and metrics`
+
+---
+
+## 🧩 MODULE IMPLEMENTATIONS
+
+### 10. Inventory Management Module
+- [ ] CRUD for products using Livewire components.
+- [ ] Include category, price fields.
+- [ ] Implement low-stock indicator.
+- [ ] UI: simple data table with search/filter.
+
+**Checkpoint #10:**  
+Commit → `feat: inventory management module`
+
+---
+
+### 11. Sales Management Module
+- [ ] Create Livewire component for new sales.
+- [ ] Select product, → auto-calculate total.
+- [ ] Update inventory status after sale.
+- [ ] Generate PDF invoice via DomPDF.
+- [ ] Display recent sales list.
+
+**Checkpoint #11:**  
+Commit → `feat: sales management with PDF invoice`
+
+---
+
+### 12. Finance Management Module
+- [ ] Record business capital, total debt, total cash, total expenses, total asset.
+- [ ] Auto-calculate profit: (total asset + total cash + total debt - total expenses - business capital).
+- [ ] Display summary dashboard.
+- [ ] Enable filtering by date range.
+
+**Checkpoint #12:**  
+Commit → `feat: finance module with auto profit calculation`
+
+---
+
+### 13. User Management (Tenant Super Admin)
+- [ ] CRUD for tenant users.
+- [ ] Assign roles: Admin or Super Admin.
+- [ ] Option to reset password or deactivate user.
+- [ ] Use Livewire modals for create/edit.
+
+**Checkpoint #13:**  
+Commit → `feat: tenant user management`
+
+---
+
+### 14. Reports Module
+- [ ] Generate monthly sales report.
+- [ ] Display top-selling products.
+- [ ] Export reports as PDF.
+- [ ] Finance summary chart (use Livewire chart library).
+
+**Checkpoint #14:**  
+Commit → `feat: reports module with charts`
+
+---
+
+## 🧰 INFRASTRUCTURE & DEPLOYMENT
+
+### 15. Testing & QA
+- [ ] Create test tenants.
+- [ ] Test role-based permissions.
+- [ ] Test database isolation.
+- [ ] Test invoice generation and finance updates.
+- [ ] Test Livewire interactivity.
+
+**Checkpoint #15:**  
+Commit → `test: verified core functionalities`
+
+---
+
+### 16. Deployment to Hostinger
+- [ ] Upload project files.
+- [ ] Configure `.env` for production DB.
+- [ ] Run migrations for central DB.
+- [ ] Test tenant registration and dashboard live.
+- [ ] Secure file permissions and storage link.
+
+**Checkpoint #16:**  
+Commit → `deploy: istore MVP to hostinger`
+
+---
+
+## 📦 FINALIZATION
+
+### 17. Documentation
+- [ ] update `README.md` (project overview, setup, tech stack).
+- [ ] Include this `planning.md` in repo root.
+- [ ] Document environment variables.
+- [ ] Add contribution and deployment notes.
+
+**Checkpoint #17:**  
+Commit → `docs: added readme and planning.md`
+
+---
+
+## 🧩 FUTURE PHASES (Not MVP)
+- [ ] Custom domain per tenant (`companyname.istore.com`)
+- [ ] CSV import/export for inventory.
+- [ ] Email/SMS notifications.
+- [ ] Visual analytics dashboard.
+- [ ] Automated backups.
+- [ ] Audit logs.
+
+---
+
+## ✅ COMPLETION
+Once all boxes above are checked and committed to GitHub:
+> **Project Status:** MVP Complete  
+> **Next Step:** Begin feature expansion or UI polishing phase.
+
+---

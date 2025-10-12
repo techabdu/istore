@@ -129,11 +129,11 @@ Commit → `feat: authentication flow and role middleware`
 - [x] Create `DeveloperController` + Livewire components.
 - [x] Pages:
   - [x] View all tenants.
-  - [ ] Approve / suspend tenants.
-  - [ ] Delete tenants.
+  - [x] Approve / suspend tenants.
+  - [x] Delete tenants.
   - [ ] Access tenant analytics summary.
 - [x] UI: Clean admin layout using TailwindCSS + Livewire.
-- [ ] Integrate data tables (search, filter, pagination).
+- [x] Integrate data tables (search, filter, pagination).
 
 **Checkpoint #7:**  
 Commit → `feat: developer dashboard with tenant management`

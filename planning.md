@@ -154,12 +154,12 @@ Commit → `feat: tenant registration flow with auto db creation`
 ---
 
 ### 9. Tenant Dashboard (Super Admin / Admin)
-- [ ] Build dashboard layout (company name in navbar).
-- [ ] Dashboard metrics: total sales, total expenses, stock count, profit summary.
-- [ ] Create separate navigation menus for:
-  - [ ] Super Admin (finance, users, reports)
-  - [ ] Admin (inventory, sales, invoices)
-- [ ] Add user role-based visibility for menu items.
+- [x] Build dashboard layout (company name in navbar).
+- [x] Dashboard metrics: total sales, total expenses, stock count, profit summary.
+- [x] Create separate navigation menus for:
+  - [x] Super Admin (finance, users, reports)
+  - [x] Admin (inventory, sales, invoices)
+- [x] Add user role-based visibility for menu items.
 
 **Checkpoint #9:**  
 Commit → `feat: tenant dashboard layout and metrics`

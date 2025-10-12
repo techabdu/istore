@@ -8,13 +8,51 @@
                     <a href="{{ route('dashboard') }}">
                         <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
                     </a>
+                    @if (tenant())
+                        <span class="ml-4 text-lg font-semibold text-gray-800">{{ tenant()->business_name }}</span>
+                    @endif
                 </div>
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
-                    </x-nav-link>
+                    @if (!tenant() && (Auth::user()->role->name === 'SuperAdmin' || Auth::user()->role->name === 'Developer'))
+                        <x-nav-link :href="route('developer.dashboard')" :active="request()->routeIs('developer.dashboard')">
+                            {{ __('Developer Dashboard') }}
+                        </x-nav-link>
+                        <x-nav-link :href="route('developer.tenants')" :active="request()->routeIs('developer.tenants')">
+                            {{ __('Manage Tenants') }}
+                        </x-nav-link>
+                    @elseif (tenant())
+                        <x-nav-link :href="route('tenant.dashboard')" :active="request()->routeIs('tenant.dashboard')">
+                            {{ __('Dashboard') }}
+                        </x-nav-link>
+                        @if (Auth::user()->role->name === 'Super Admin')
+                            <x-nav-link :href="route('tenant.finance')" :active="request()->routeIs('tenant.finance')">
+                                {{ __('Finance') }}
+                            </x-nav-link>
+                            <x-nav-link :href="route('tenant.users')" :active="request()->routeIs('tenant.users')">
+                                {{ __('Users') }}
+                            </x-nav-link>
+                            <x-nav-link :href="route('tenant.reports')" :active="request()->routeIs('tenant.reports')">
+                                {{ __('Reports') }}
+                            </x-nav-link>
+                        @endif
+                        @if (Auth::user()->role->name === 'Admin')
+                            <x-nav-link :href="route('tenant.inventory')" :active="request()->routeIs('tenant.inventory')">
+                                {{ __('Inventory') }}
+                            </x-nav-link>
+                            <x-nav-link :href="route('tenant.sales')" :active="request()->routeIs('tenant.sales')">
+                                {{ __('Sales') }}
+                            </x-nav-link>
+                            <x-nav-link :href="route('tenant.invoices')" :active="request()->routeIs('tenant.invoices')">
+                                {{ __('Invoices') }}
+                            </x-nav-link>
+                        @endif
+                    @else
+                        <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                            {{ __('Dashboard') }}
+                        </x-nav-link>
+                    @endif
                 </div>
             </div>
 

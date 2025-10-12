@@ -141,12 +141,12 @@ Commit → `feat: developer dashboard with tenant management`
 ---
 
 ### 8. Tenant Registration System
-- [ ] Create `TenantRegistrationController`.
-- [ ] Build registration form (Full Name, company name, business capital, address, phone number, admin email, password).
-- [ ] On registration, system auto-creates:
-  - [ ] Tenant DB (via `stancl/tenancy`).
-  - [ ] Tenant Super Admin user.
-- [ ] Redirect to tenant dashboard after registration.
+- [x] Create `TenantRegistrationController`.
+- [x] Build registration form (Full Name, company name, business capital, address, phone number, admin email, password).
+- [x] On registration, system auto-creates:
+  - [x] Tenant DB (via `stancl/tenancy`).
+  - [x] Tenant Super Admin user.
+- [x] Redirect to tenant dashboard after registration.
 
 **Checkpoint #8:**  
 Commit → `feat: tenant registration flow with auto db creation`

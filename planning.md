@@ -89,10 +89,10 @@ Commit → `feat: setup stancl/tenancy and tenant db isolation`
 ## ⚙️ SYSTEM ARCHITECTURE SETUP
 
 ### 4. Define Models & Migrations (Central)
-- [] Model: `Tenant` (full_name, business_name, business_capital, address, phone_number, status).
-- [] Model: `User` (name, email, password, role, tenant_id nullable).
-- [] Add seeders for Developer Super Admin.
-- [] Setup default `SuperAdmin`, `Admin`, and `Developer` roles.
+- [x] Model: `Tenant` (full_name, business_name, business_capital, address, phone_number, status).
+- [x] Model: `User` (name, email, password, role, tenant_id nullable).
+- [x] Add seeders for Developer Super Admin.
+- [x] Setup default `SuperAdmin`, `Admin`, and `Developer` roles.
 
 **Checkpoint #4:**  
 Commit → `feat: defined central models and roles`
@@ -101,11 +101,11 @@ Commit → `feat: defined central models and roles`
 
 ### 5. Define Models & Migrations (Tenant)
 Each tenant DB contains:
-- [ ] `products` — id, name, category, ram, imei, storage, condition, purchase_price, selling_price, status, date.
-- [ ] `sales` — id, product_id, total_price, date.
-- [ ] `expenses` — id, title, description, amount, date.
-- [ ] `finances` — id, total_asset, total_expenses, total_debt, total_cash, capital, profit.
-- [ ] `invoices` — id, sale_id, invoice_number.
+- [x] `products` — id, name, category, ram, imei, storage, condition, purchase_price, selling_price, status, date.
+- [x] `sales` — id, product_id, total_price, date.
+- [x] `expenses` — id, title, description, amount, date.
+- [x] `finances` — id, total_asset, total_expenses, total_debt, total_cash, capital, profit.
+- [x] `invoices` — id, sale_id, invoice_number.
 
 **Checkpoint #5:**  
 Commit → `feat: added tenant models and migrations`

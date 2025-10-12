@@ -89,10 +89,10 @@ Commit → `feat: setup stancl/tenancy and tenant db isolation`
 ## ⚙️ SYSTEM ARCHITECTURE SETUP
 
 ### 4. Define Models & Migrations (Central)
-- [x] Model: `Tenant` (full_name, business_name, business_capital, address, phone_number, status).
-- [x] Model: `User` (name, email, password, role, tenant_id nullable).
-- [x] Add seeders for Developer Super Admin.
-- [x] Setup default `SuperAdmin`, `Admin`, and `Developer` roles.
+- [] Model: `Tenant` (full_name, business_name, business_capital, address, phone_number, status).
+- [] Model: `User` (name, email, password, role, tenant_id nullable).
+- [] Add seeders for Developer Super Admin.
+- [] Setup default `SuperAdmin`, `Admin`, and `Developer` roles.
 
 **Checkpoint #4:**  
 Commit → `feat: defined central models and roles`

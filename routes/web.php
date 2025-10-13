@@ -12,6 +12,7 @@ Route::get('/', function () {
 Route::middleware(['auth', 'role:SuperAdmin,Developer'])->prefix('developer')->name('developer.')->group(function () {
     Route::get('/dashboard', [DeveloperController::class, 'index'])->name('dashboard');
     Route::get('/tenants', [DeveloperController::class, 'tenants'])->name('tenants');
+    Route::get('/analytics', [DeveloperController::class, 'analytics'])->name('analytics');
 });
 
 Route::middleware('guest')->group(function () {

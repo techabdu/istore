@@ -17,4 +17,9 @@ class DeveloperController extends Controller
         $tenants = Tenant::all();
         return view('developer.tenants', compact('tenants'));
     }
+
+    public function analytics()
+    {
+        return view('developer.analytics');
+    }
 }

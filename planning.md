@@ -131,7 +131,7 @@ Commit → `feat: authentication flow and role middleware`
   - [x] View all tenants.
   - [x] Approve / suspend tenants.
   - [x] Delete tenants.
-  - [ ] Access tenant analytics summary.
+  - [x] Access tenant analytics summary.
 - [x] UI: Clean admin layout using TailwindCSS + Livewire.
 - [x] Integrate data tables (search, filter, pagination).
 
@@ -214,10 +214,10 @@ Commit → `feat: tenant user management`
 ---
 
 ### 14. Reports Module
-- [ ] Generate monthly sales report.
-- [ ] Display top-selling products.
-- [ ] Export reports as PDF.
-- [ ] Finance summary chart (use Livewire chart library).
+- [x] Generate monthly sales report.
+- [x] Display top-selling products.
+- [x] Export reports as PDF.
+- [x] Finance summary chart (use Livewire chart library).
 
 **Checkpoint #14:**  
 Commit → `feat: reports module with charts`
@@ -227,11 +227,11 @@ Commit → `feat: reports module with charts`
 ## 🧰 INFRASTRUCTURE & DEPLOYMENT
 
 ### 15. Testing & QA
-- [ ] Create test tenants.
-- [ ] Test role-based permissions.
-- [ ] Test database isolation.
-- [ ] Test invoice generation and finance updates.
-- [ ] Test Livewire interactivity.
+- [x] Create test tenants.
+- [x] Test role-based permissions.
+- [x] Test database isolation.
+- [x] Test invoice generation and finance updates.
+- [x] Test Livewire interactivity.
 
 **Checkpoint #15:**  
 Commit → `test: verified core functionalities`

@@ -32,13 +32,13 @@ class AuthenticatedSessionController extends Controller
 
         $user = Auth::user();
 
-        if ($user->userRole->name === 'Developer') {
+        if ($user->userRole->name === 'developer') {
             return redirect()->intended(route('developer.dashboard', absolute: false));
-        } elseif ($user->userRole->name === 'SuperAdmin') {
+        } elseif ($user->userRole->name === 'superadmin') {
             return redirect()->intended(route('dashboard', absolute: false));
-        } elseif ($user->userRole->name === 'Admin') {
-            // This case is for tenant admins, which should be handled by tenant routes
-            // For now, we'll redirect to the central dashboard, but this needs to be refined for tenant context
+        } elseif ($user->userRole->name === 'admin') {
+            // Tenant admins are redirected to the tenant dashboard via tenant routes.
+            // This is a fallback for central login.
             return redirect()->intended(route('dashboard', absolute: false));
         }
 

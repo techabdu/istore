@@ -70,11 +70,11 @@ Commit → `feat: central registration page updated`
 
 ### 3. Role-Based Login Redirection
 
-- [ ] **3.1. Modify `AuthenticatedSessionController`:** Update `app/Http/Controllers/Auth/AuthenticatedSessionController.php` to implement role-based redirection after successful central login.
-  - [ ] If `userRole->name` is 'developer', redirect to `route('developer.dashboard')`.
-  - [ ] If `userRole->name` is 'superadmin', redirect to `route('dashboard')` (central SuperAdmin dashboard).
-  - [ ] If `userRole->name` is 'admin', redirect to `route('dashboard')` (central Admin dashboard - *Note: This will be refined for tenant context later*).
-  - [ ] Default redirection to `route('dashboard')`.
+- [x] **3.1. Modify `AuthenticatedSessionController`:** Update `app/Http/Controllers/Auth/AuthenticatedSessionController.php` to implement role-based redirection after successful central login.
+  - [x] If `userRole->name` is 'developer', redirect to `route('developer.dashboard')`.
+  - [x] If `userRole->name` is 'superadmin', redirect to `route('dashboard')` (central SuperAdmin dashboard).
+  - [x] If `userRole->name` is 'admin', redirect to `route('dashboard')` (central Admin dashboard - *Note: This will be refined for tenant context later*).
+  - [x] Default redirection to `route('dashboard')`.
 
 **Checkpoint #3:**
 Commit → `feat: role-based login redirection implemented`

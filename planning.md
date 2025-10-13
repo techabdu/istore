@@ -169,10 +169,10 @@ Commit → `feat: tenant dashboard layout and metrics`
 ## 🧩 MODULE IMPLEMENTATIONS
 
 ### 10. Inventory Management Module
-- [ ] CRUD for products using Livewire components.
-- [ ] Include category, price fields.
-- [ ] Implement low-stock indicator.
-- [ ] UI: simple data table with search/filter.
+- [x] CRUD for products using Livewire components.
+- [x] Include category, price fields.
+- [x] Implement low-stock indicator.
+- [x] UI: simple data table with search/filter.
 
 **Checkpoint #10:**  
 Commit → `feat: inventory management module`

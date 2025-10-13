@@ -29,6 +29,10 @@ Route::middleware([
         return view('dashboard');
     })->middleware(['auth', 'verified'])->name('tenant.dashboard');
 
+    Route::get('/inventory', function () {
+        return view('tenant.inventory.index');
+    })->middleware(['auth', 'verified', 'role:Admin,Super Admin'])->name('tenant.inventory');
+
     Route::get('/', function () {
         return 'This is your multi-tenant application. The id of the current tenant is ' . tenant('id');
     });

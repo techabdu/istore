@@ -60,8 +60,8 @@ Commit → `feat: initial auth setup and developer user creation`
 
 ### 2. Central Registration Page Enhancements
 
-- [ ] **2.1. Remove Default Role Assignment:** Remove the 'SuperAdmin' default role assignment from `app/Http/Controllers/Auth/RegisteredUserController.php`. New central registrations should not automatically get a role.
-- [ ] **2.2. Add Tenant Registration Link:** Add a prominent link on the central login/registration page (`resources/views/auth/login.blade.php` or `resources/views/auth/register.blade.php`) to `route('tenant.register')`.
+- [x] **2.1. Remove Default Role Assignment:** Remove the 'SuperAdmin' default role assignment from `app/Http/Controllers/Auth/RegisteredUserController.php`. New central registrations should not automatically get a role.
+- [x] **2.2. Add Tenant Registration Link:** Add a prominent link on the central login/registration page (`resources/views/auth/login.blade.php` or `resources/views/auth/register.blade.php`) to `route('tenant.register')`.
 
 **Checkpoint #2:**
 Commit → `feat: central registration page updated`

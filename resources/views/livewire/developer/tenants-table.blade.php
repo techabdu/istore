@@ -46,11 +46,11 @@
                         <td class="px-6 py-4 whitespace-nowrap">{{ $tenant->created_at->format('Y-m-d H:i') }}</td>
                         <td class="px-6 py-4 whitespace-nowrap">{{ ucfirst($tenant->status) }}</td>
                         <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                            @if ($tenant->status === 'pending' || $tenant->status === 'suspended')
-                                <button wire:click="approveTenant('{{ $tenant->id }}')" class="text-green-600 hover:text-green-900 mr-2">Approve</button>
+                            @if ($tenant->status === 'pending' || $tenant->status === 'inactive')
+                                <button wire:click="activateTenant('{{ $tenant->id }}')" class="text-green-600 hover:text-green-900 mr-2">Activate</button>
                             @endif
-                            @if ($tenant->status === 'approved')
-                                <button wire:click="suspendTenant('{{ $tenant->id }}')" class="text-yellow-600 hover:text-yellow-900 mr-2">Suspend</button>
+                            @if ($tenant->status === 'active')
+                                <button wire:click="deactivateTenant('{{ $tenant->id }}')" class="text-yellow-600 hover:text-yellow-900 mr-2">Deactivate</button>
                             @endif
                             <button wire:click="deleteTenant('{{ $tenant->id }}')" class="text-red-600 hover:text-red-900">Delete</button>
                         </td>

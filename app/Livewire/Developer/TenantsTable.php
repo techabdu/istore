@@ -31,20 +31,20 @@ class TenantsTable extends Component
         $this->resetPage();
     }
 
-    public function approveTenant($tenantId)
+    public function activateTenant($tenantId)
     {
         $tenant = Tenant::findOrFail($tenantId);
-        $tenant->put('status', 'approved');
+        $tenant->put('status', 'active');
         $tenant->save();
-        session()->flash('message', 'Tenant approved successfully.');
+        session()->flash('message', 'Tenant activated successfully.');
     }
 
-    public function suspendTenant($tenantId)
+    public function deactivateTenant($tenantId)
     {
         $tenant = Tenant::findOrFail($tenantId);
-        $tenant->put('status', 'suspended');
+        $tenant->put('status', 'inactive');
         $tenant->save();
-        session()->flash('message', 'Tenant suspended successfully.');
+        session()->flash('message', 'Tenant deactivated successfully.');
     }
 
     public function deleteTenant($tenantId)

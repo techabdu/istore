@@ -47,7 +47,7 @@ class TenantRegistrationController extends Controller
                 'business_capital' => $request->business_capital,
                 'address' => $request->address,
                 'phone_number' => $request->phone_number,
-                'status' => 'pending', // Default status
+                'status' => 'inactive', // Default status
             ]
         ]);
 

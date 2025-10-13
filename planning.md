@@ -180,11 +180,11 @@ Commit → `feat: inventory management module`
 ---
 
 ### 11. Sales Management Module
-- [ ] Create Livewire component for new sales.
-- [ ] Select product, → auto-calculate total.
-- [ ] Update inventory status after sale.
-- [ ] Generate PDF invoice via DomPDF.
-- [ ] Display recent sales list.
+- [x] Create Livewire component for new sales.
+- [x] Select product, → auto-calculate total.
+- [x] Update inventory status after sale.
+- [x] Generate PDF invoice via DomPDF.
+- [x] Display recent sales list.
 
 **Checkpoint #11:**  
 Commit → `feat: sales management with PDF invoice`

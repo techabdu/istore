@@ -47,11 +47,11 @@
 
 ### 1. Initial Setup & User Creation
 
-- [ ] **1.1. Verify Role Existence:** Ensure 'developer', 'superadmin', and 'admin' roles exist in the `roles` table (central DB).
-  - [ ] *Check:* `SELECT * FROM roles;`
-- [ ] **1.2. Create Developer User:** Manually insert a user into the central `users` table with the 'developer' role.
-  - [ ] *Details:* Email: `developer@example.com`, Password: `password` (hashed), `role_id` corresponding to 'developer' role.
-  - [ ] *Action:* Provide SQL/Tinker command for user to execute.
+- [x] **1.1. Verify Role Existence:** Ensure 'developer', 'superadmin', and 'admin' roles exist in the `roles` table (central DB).
+  - [x] *Check:* `SELECT * FROM roles;`
+- [x] **1.2. Create Developer User:** Manually insert a user into the central `users` table with the 'developer' role.
+  - [x] *Details:* Email: `developer@example.com`, Password: `password` (hashed), `role_id` corresponding to 'developer' role.
+  - [x] *Action:* Provide SQL/Tinker command for user to execute.
 
 **Checkpoint #1:**
 Commit → `feat: initial auth setup and developer user creation`

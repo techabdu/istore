@@ -233,6 +233,7 @@ Commit → `feat: reports module with charts`
 - [x] Test invoice generation and finance updates.
 - [x] Test Livewire interactivity.
 
+
 **Checkpoint #15:**  
 Commit → `test: verified core functionalities`
 

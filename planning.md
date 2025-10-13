@@ -203,10 +203,10 @@ Commit → `feat: finance module with auto profit calculation`
 ---
 
 ### 13. User Management (Tenant Super Admin)
-- [ ] CRUD for tenant users.
-- [ ] Assign roles: Admin or Super Admin.
-- [ ] Option to reset password or deactivate user.
-- [ ] Use Livewire modals for create/edit.
+- [x] CRUD for tenant users.
+- [x] Assign roles: Admin or Super Admin.
+- [x] Option to reset password or deactivate user.
+- [x] Use Livewire modals for create/edit.
 
 **Checkpoint #13:**  
 Commit → `feat: tenant user management`

@@ -37,6 +37,9 @@ class AuthenticatedSessionController extends Controller
         } elseif ($user->userRole->name === 'superadmin') {
             return redirect()->intended(route('dashboard', absolute: false));
         } elseif ($user->userRole->name === 'admin') {
+            if (tenancy()->tenant) {
+                return redirect()->intended(route('tenant.admin.dashboard', absolute: false));
+            }
             // Tenant admins are redirected to the tenant dashboard via tenant routes.
             // This is a fallback for central login.
             return redirect()->intended(route('dashboard', absolute: false));

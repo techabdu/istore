@@ -83,12 +83,12 @@ Commit → `feat: role-based login redirection implemented`
 
 ### 4. Tenant-Specific Admin Dashboard
 
-- [ ] **4.1. Create Tenant Admin Dashboard Route:** Define a new route in `routes/tenant.php` for the tenant admin dashboard.
-  - [ ] *Route:* `Route::get('/admin/dashboard', function () { return view('tenant.admin.dashboard'); })->middleware(['auth', 'verified', 'role:Admin'])->name('tenant.admin.dashboard');`
-- [ ] **4.2. Create Tenant Admin Dashboard View:** Create `resources/views/tenant/admin/dashboard.blade.php`.
-  - [ ] *Content:* A simple view indicating "Welcome to the Tenant Admin Dashboard!".
-- [ ] **4.3. Update `AuthenticatedSessionController` for Tenant Admin:** Refine the 'admin' role redirection in `app/Http/Controllers/Auth/AuthenticatedSessionController.php` to redirect to `route('tenant.admin.dashboard')` *if* the user is logging into a tenant domain.
-  - [ ] *Note:* This step requires careful handling of tenant context within the central login controller, or ensuring tenant admins only log in via tenant domains. A simpler approach might be to ensure tenant admins *only* log in via tenant domains, and the central login only handles central users. For now, we'll assume central login handles central users, and tenant login handles tenant users.
+- [x] **4.1. Create Tenant Admin Dashboard Route:** Define a new route in `routes/tenant.php` for the tenant admin dashboard.
+  - [x] *Route:* `Route::get('/admin/dashboard', function () { return view('tenant.admin.dashboard'); })->middleware(['auth', 'verified', 'role:Admin'])->name('tenant.admin.dashboard');`
+- [x] **4.2. Create Tenant Admin Dashboard View:** Create `resources/views/tenant/admin/dashboard.blade.php`.
+  - [x] *Content:* A simple view indicating "Welcome to the Tenant Admin Dashboard!".
+- [x] **4.3. Update `AuthenticatedSessionController` for Tenant Admin:** Refine the 'admin' role redirection in `app/Http/Controllers/Auth/AuthenticatedSessionController.php` to redirect to `route('tenant.admin.dashboard')` *if* the user is logging into a tenant domain.
+  - [x] *Note:* This step requires careful handling of tenant context within the central login controller, or ensuring tenant admins only log in via tenant domains. A simpler approach might be to ensure tenant admins *only* log in via tenant domains, and the central login only handles central users. For now, we'll assume central login handles central users, and tenant login handles tenant users.
 
 **Checkpoint #4:**
 Commit → `feat: tenant admin dashboard and redirection`

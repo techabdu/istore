@@ -192,10 +192,10 @@ Commit → `feat: sales management with PDF invoice`
 ---
 
 ### 12. Finance Management Module
-- [ ] Record business capital, total debt, total cash, total expenses, total asset.
-- [ ] Auto-calculate profit: (total asset + total cash + total debt - total expenses - business capital).
-- [ ] Display summary dashboard.
-- [ ] Enable filtering by date range.
+- [x] Record business capital, total debt, total cash, total expenses, total asset.
+- [x] Auto-calculate profit: (total asset + total cash + total debt - total expenses - business capital).
+- [x] Display summary dashboard.
+- [x] Enable filtering by date range.
 
 **Checkpoint #12:**  
 Commit → `feat: finance module with auto profit calculation`

@@ -37,6 +37,10 @@ Route::middleware([
         return view('tenant.sales.index');
     })->middleware(['auth', 'verified', 'role:Admin,Super Admin'])->name('tenant.sales');
 
+    Route::get('/finance', function () {
+        return view('tenant.finance.index');
+    })->middleware(['auth', 'verified', 'role:Super Admin'])->name('tenant.finance');
+
     Route::get('/', function () {
         return 'This is your multi-tenant application. The id of the current tenant is ' . tenant('id');
     });

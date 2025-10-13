@@ -15,7 +15,7 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    @if (!tenant() && (Auth::user()->role->name === 'SuperAdmin' || Auth::user()->role->name === 'Developer'))
+                    @if (!tenant() && Auth::check() && Auth::user()->userRole && (Auth::user()->userRole->name === 'SuperAdmin' || Auth::user()->userRole->name === 'Developer'))
                         <x-nav-link :href="route('developer.dashboard')" :active="request()->routeIs('developer.dashboard')">
                             {{ __('Developer Dashboard') }}
                         </x-nav-link>
@@ -26,7 +26,7 @@
                         <x-nav-link :href="route('tenant.dashboard')" :active="request()->routeIs('tenant.dashboard')">
                             {{ __('Dashboard') }}
                         </x-nav-link>
-                        @if (Auth::user()->role->name === 'Super Admin')
+                        @if (Auth::user()->userRole->name === 'Super Admin')
                             <x-nav-link :href="route('tenant.finance')" :active="request()->routeIs('tenant.finance')">
                                 {{ __('Finance') }}
                             </x-nav-link>
@@ -37,7 +37,7 @@
                                 {{ __('Reports') }}
                             </x-nav-link>
                         @endif
-                        @if (Auth::user()->role->name === 'Admin')
+                        @if (Auth::user()->userRole->name === 'Admin')
                             <x-nav-link :href="route('tenant.inventory')" :active="request()->routeIs('tenant.inventory')">
                                 {{ __('Inventory') }}
                             </x-nav-link>
@@ -61,7 +61,7 @@
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
                         <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
-                            <div>{{ Auth::user()->name }}</div>
+                            <div>@if(Auth::check()){{ Auth::user()->name }}@endif</div>
 
                             <div class="ms-1">
                                 <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
@@ -113,8 +113,8 @@
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-gray-200">
             <div class="px-4">
-                <div class="font-medium text-base text-gray-800">{{ Auth::user()->name }}</div>
-                <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
+                <div class="font-medium text-base text-gray-800">@if(Auth::check()){{ Auth::user()->name }}@endif</div>
+                <div class="font-medium text-sm text-gray-500">@if(Auth::check()){{ Auth::user()->email }}@endif</div>
             </div>
 
             <div class="mt-3 space-y-1">

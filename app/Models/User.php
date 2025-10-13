@@ -13,6 +13,8 @@ class User extends Authenticatable
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
 
+    protected $with = ['userRole'];
+
     /**
      * The attributes that are mass assignable.
      *
@@ -24,12 +26,11 @@ class User extends Authenticatable
         'password',
         'role_id',
         'status',
-        'role',
         'tenant_id',
 
     ];
 
-    public function role()
+    public function userRole()
     {
         return $this->belongsTo(Role::class);
     }

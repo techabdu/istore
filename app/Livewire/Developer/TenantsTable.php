@@ -34,14 +34,16 @@ class TenantsTable extends Component
     public function approveTenant($tenantId)
     {
         $tenant = Tenant::findOrFail($tenantId);
-        $tenant->update(['status' => 'approved']);
+        $tenant->put('status', 'approved');
+        $tenant->save();
         session()->flash('message', 'Tenant approved successfully.');
     }
 
     public function suspendTenant($tenantId)
     {
         $tenant = Tenant::findOrFail($tenantId);
-        $tenant->update(['status' => 'suspended']);
+        $tenant->put('status', 'suspended');
+        $tenant->save();
         session()->flash('message', 'Tenant suspended successfully.');
     }
 
@@ -56,7 +58,7 @@ class TenantsTable extends Component
     {
         $tenants = Tenant::query()
             ->where('id', 'like', '%' . $this->search . '%')
-            ->orWhere('business_name', 'like', '%' . $this->search . '%')
+            ->orWhere('data->business_name', 'like', '%' . $this->search . '%')
             ->orderBy($this->sortField, $this->sortDirection)
             ->paginate($this->perPage);
 

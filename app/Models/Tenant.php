@@ -10,11 +10,11 @@ class Tenant extends BaseTenant
     use HasDomains;
 
     protected $fillable = [
-        'full_name',
-        'business_name',
-        'business_capital',
-        'address',
-        'phone_number',
-        'status',
+        'data',
     ];
+
+    public function getBusinessNameAttribute()
+    {
+        return $this->data['business_name'] ?? null;
+    }
 }

@@ -64,17 +64,7 @@
             <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
         </div>
 
-        <!-- Domain -->
-        <div class="mt-4">
-            <x-input-label for="domain" :value="__('Subdomain (e.g., yourstore)')" />
-            <div class="flex rounded-md shadow-sm mt-1">
-                <x-text-input id="domain" class="flex-1 block w-full rounded-none rounded-l-md" type="text" name="domain" :value="old('domain')" required autocomplete="domain" />
-                <span class="inline-flex items-center px-3 rounded-r-md border border-l-0 border-gray-300 bg-gray-50 text-gray-500 text-sm">
-                    .{{ config('tenancy.central_domains')[0] }}
-                </span>
-            </div>
-            <x-input-error :messages="$errors->get('domain')" class="mt-2" />
-        </div>
+
 
         <div class="flex items-center justify-end mt-4">
             <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">

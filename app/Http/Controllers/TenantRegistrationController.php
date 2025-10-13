@@ -8,6 +8,8 @@ use App\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\Password;
+use Illuminate\Support\Str;
+use Stancl\Tenancy\Database\Models\Domain;
 
 class TenantRegistrationController extends Controller
 {
@@ -20,27 +22,37 @@ class TenantRegistrationController extends Controller
     {
         $request->validate([
             'full_name' => ['required', 'string', 'max:255'],
-            'business_name' => ['required', 'string', 'max:255', 'unique:tenants'],
+            'business_name' => ['required', 'string', 'max:255', 'unique:tenants,data->business_name'],
             'business_capital' => ['required', 'numeric', 'min:0'],
             'address' => ['required', 'string', 'max:255'],
             'phone_number' => ['required', 'string', 'max:20'],
             'email' => ['required', 'string', 'email', 'max:255'],
             'password' => ['required', 'confirmed', Password::defaults()],
-            'domain' => ['required', 'string', 'max:255', 'unique:domains'],
         ]);
+
+        // Generate unique domain from business name
+        $domain = Str::slug($request->business_name);
+        $original_domain = $domain;
+        $count = 1;
+        while (Domain::where('domain', $domain . '.' . config('tenancy.central_domains')[0])->exists()) {
+            $domain = $original_domain . '-' . $count;
+            $count++;
+        }
 
         // Create tenant in central DB
         $tenant = Tenant::create([
-            'full_name' => $request->full_name,
-            'business_name' => $request->business_name,
-            'business_capital' => $request->business_capital,
-            'address' => $request->address,
-            'phone_number' => $request->phone_number,
-            'status' => 'pending', // Default status
+            'data' => [
+                'full_name' => $request->full_name,
+                'business_name' => $request->business_name,
+                'business_capital' => $request->business_capital,
+                'address' => $request->address,
+                'phone_number' => $request->phone_number,
+                'status' => 'pending', // Default status
+            ]
         ]);
 
         // Attach domain to tenant
-        $tenant->domains()->create(['domain' => $request->domain . '.' . config('tenancy.central_domains')[0]]);
+        $tenant->domains()->create(['domain' => $domain . '.' . config('tenancy.central_domains')[0]]);
 
         // Run tenant migrations and create admin user in tenant DB
         $tenant->run(function () use ($request) {
@@ -51,7 +63,7 @@ class TenantRegistrationController extends Controller
             ]);
 
             // Create tenant Super Admin user
-            $superAdminRole = Role::where('name', 'Super Admin')->first();
+            $superAdminRole = Role::where('name', 'SuperAdmin')->first();
             User::create([
                 'name' => $request->full_name,
                 'email' => $request->email,
@@ -61,7 +73,7 @@ class TenantRegistrationController extends Controller
         });
 
         // Redirect to tenant's dashboard
-        return redirect()->route('tenant.dashboard', ['domain' => $request->domain . '.' . config('tenancy.central_domains')[0]])
+        return redirect('http://' . $domain . '.' . config('tenancy.central_domains')[0] . '/login')
             ->with('status', 'Tenant registered successfully. Please log in.');
     }
 }

@@ -97,21 +97,21 @@ Commit → `feat: tenant admin dashboard and redirection`
 
 ### 5. Verification & Testing
 
-- [ ] **5.1. Test Developer Login:**
-  - [ ] Log in with `developer@example.com`.
-  - [ ] Verify redirection to `/developer/dashboard` and correct content.
-- [ ] **5.2. Test Central SuperAdmin Login:**
-  - [ ] Register a new user (will be SuperAdmin by default).
-  - [ ] Log in with new SuperAdmin credentials.
-  - [ ] Verify redirection to `/dashboard` (central SuperAdmin dashboard) and correct content.
-- [ ] **5.3. Test Tenant Registration & SuperAdmin Login:**
-  - [ ] Register a new tenant via `route('tenant.register')`.
-  - [ ] Log in as the tenant SuperAdmin (created during tenant registration).
-  - [ ] Verify redirection to `tenant_domain/dashboard` and correct content.
-- [ ] **5.4. Test Tenant Admin Login:**
-  - [ ] Create an 'admin' user within a tenant (via tenant SuperAdmin dashboard).
-  - [ ] Log in as the tenant Admin.
-  - [ ] Verify redirection to `tenant_domain/admin/dashboard` and correct content.
+- [x] **5.1. Test Developer Login:**
+  - [x] Log in with `developer@example.com`.
+  - [x] Verify redirection to `/developer/dashboard` and correct content.
+- [x] **5.2. Test Central SuperAdmin Login:**
+  - [x] Register a new user (will be SuperAdmin by default).
+  - [x] Log in with new SuperAdmin credentials.
+  - [x] Verify redirection to `/dashboard` (central SuperAdmin dashboard) and correct content.
+- [x] **5.3. Test Tenant Registration & SuperAdmin Login:**
+  - [x] Register a new tenant via `route('tenant.register')`.
+  - [x] Log in as the tenant SuperAdmin (created during tenant registration).
+  - [x] Verify redirection to `tenant_domain/dashboard` and correct content.
+- [x] **5.4. Test Tenant Admin Login:**
+  - [x] Create an 'admin' user within a tenant (via tenant SuperAdmin dashboard).
+  - [x] Log in as the tenant Admin.
+  - [x] Verify redirection to `tenant_domain/admin/dashboard` and correct content.
 
 **Checkpoint #5:**
 Commit → `test: authentication and redirection flows verified`

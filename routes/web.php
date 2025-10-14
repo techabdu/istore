@@ -9,7 +9,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::middleware(['auth', 'role:SuperAdmin,Developer'])->prefix('developer')->name('developer.')->group(function () {
+Route::middleware(['auth', 'role:Developer'])->prefix('developer')->name('developer.')->group(function () {
     Route::get('/dashboard', [DeveloperController::class, 'index'])->name('dashboard');
     Route::get('/tenants', [DeveloperController::class, 'tenants'])->name('tenants');
     Route::get('/analytics', [DeveloperController::class, 'analytics'])->name('analytics');
@@ -21,8 +21,8 @@ Route::middleware('guest')->group(function () {
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+    return view('tenant.dashboard');
+})->middleware(['auth', 'verified', 'role:SuperAdmin'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

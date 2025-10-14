@@ -26,7 +26,7 @@ Route::middleware([
     require __DIR__.'/auth.php';
 
     Route::get('/dashboard', function () {
-        return view('dashboard');
+        return view('tenant.dashboard');
     })->middleware(['auth', 'verified'])->name('tenant.dashboard');
 
     Route::get('/inventory', function () {

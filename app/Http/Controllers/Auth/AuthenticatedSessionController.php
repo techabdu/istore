@@ -27,25 +27,32 @@ class AuthenticatedSessionController extends Controller
     public function store(LoginRequest $request): RedirectResponse
     {
         $request->authenticate();
-
         $request->session()->regenerate();
-
         $user = Auth::user();
 
-        if ($user->userRole->name === 'Developer') {
-            return redirect()->intended(route('developer.dashboard', absolute: false));
-        } elseif ($user->userRole->name === 'SuperAdmin') {
-            return redirect()->intended(route('dashboard', absolute: false));
-        } elseif ($user->userRole->name === 'Admin') {
-            if (tenancy()->tenant) {
-                return redirect()->intended(route('tenant.admin.dashboard', absolute: false));
+        if (tenancy()->tenant) {
+            // User is in a tenant context
+            if ($user->userRole->name === 'SuperAdmin') {
+                return redirect()->route('tenant.dashboard');
+            } elseif ($user->userRole->name === 'Admin') {
+                return redirect()->route('tenant.admin.dashboard');
             }
-            // Tenant admins are redirected to the tenant dashboard via tenant routes.
-            // This is a fallback for central login.
-            return redirect()->intended(route('dashboard', absolute: false));
+            // Fallback for other tenant roles or unexpected scenarios
+            return redirect()->route('tenant.dashboard'); // Default tenant dashboard
+        } else {
+            // User is in a central context
+            if ($user->userRole->name === 'Developer') {
+                return redirect()->route('developer.dashboard');
+            } elseif ($user->userRole->name === 'SuperAdmin') { // This is for CENTRAL SuperAdmin
+                return redirect()->route('dashboard'); // Central dashboard
+            }
+            // If a user logs in centrally and is not a Developer or Central SuperAdmin,
+            // it means they are likely a tenant user trying to log in centrally.
+            Auth::guard('web')->logout();
+            $request->session()->invalidate();
+            $request->session()->regenerateToken();
+            return redirect()->route('login')->withErrors(['email' => 'Tenant users must log in via their tenant domain.']);
         }
-
-        return redirect()->intended(route('dashboard', absolute: false));
     }
 
     /**

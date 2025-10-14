@@ -21,7 +21,7 @@
         }
         body {
             font-family: 'Figtree', sans-serif;
-            background-color: #f8faff; /* Clean white background with subtle blue tint */
+            background-color: #ffffffff; /* Clean white background with subtle blue tint */
         }
         .navbar-sticky {
             backdrop-filter: blur(10px);
@@ -46,7 +46,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16">
                 <div class="flex-shrink-0 flex items-center">
-                    <a href="/" class="text-3xl font-extrabold text-indigo-600 font-mono">iStore</a>
+                    <a href="#" class="text-3xl font-extrabold text-indigo-600 font-mono">iStore</a>
                 </div>
                 <div class="flex items-center">
                     <a href="#features" class="ml-4 px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-indigo-600 hover:bg-gray-50">Features</a>
@@ -80,7 +80,7 @@
                 </div>
                 <!-- Mockup Placeholder -->
                 <div class="mt-16">
-                    <img src="https://via.placeholder.com/1000x600/E0E7FF/4F46E5?text=iStore+Dashboard+Mockup" alt="iStore Dashboard Mockup" class="rounded-lg shadow-2xl mx-auto border border-gray-200">
+                    <img src="#" alt="iStore Dashboard Mockup" class="rounded-lg shadow-2xl mx-auto border border-gray-200">
                 </div>
             </div>
         </section>

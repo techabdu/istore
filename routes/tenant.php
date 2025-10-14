@@ -43,7 +43,11 @@ Route::middleware([
 
     Route::get('/users', function () {
         return view('tenant.users.index');
-    })->middleware(['auth', 'verified', 'role:Super Admin'])->name('tenant.users');
+    })->middleware(['auth', 'verified', 'role:SuperAdmin'])->name('tenant.users');
+
+    Route::get('/users/manage', function () {
+        return view('tenant.users.manage');
+    })->middleware(['auth', 'verified', 'role:SuperAdmin'])->name('tenant.users.manage');
 
     Route::get('/reports', function () {
         return view('tenant.reports.index');

@@ -37,6 +37,9 @@
                                 <x-nav-link :href="route('tenant.finance')" :active="request()->routeIs('tenant.finance')">
                                     {{ __('Finance') }}
                                 </x-nav-link>
+                                <x-nav-link :href="route('tenant.users.manage')" :active="request()->routeIs('tenant.users.manage')">
+                                    {{ __('Manage Users') }}
+                                </x-nav-link>
                                 <x-nav-link :href="route('tenant.users')" :active="request()->routeIs('tenant.users')">
                                     {{ __('Users') }}
                                 </x-nav-link>

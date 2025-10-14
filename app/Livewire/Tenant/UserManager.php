@@ -13,20 +13,36 @@ class UserManager extends Component
 {
     use WithPagination;
 
-    public $userId;
-    public $name, $email, $password, $password_confirmation, $role_id;
     public $search = '';
     public $perPage = 10;
     public $sortField = 'id';
     public $sortDirection = 'asc';
+
     public $showUserModal = false;
+    public $editingUser = null;
+
+    public $name;
+    public $email;
+    public $password;
+    public $password_confirmation;
+    public $role_id;
 
     protected $rules = [
-        'name' => 'required|string|max:255',
-        'email' => 'required|string|email|max:255|unique:users,email',
+        'name' => ['required', 'string', 'max:255'],
+        'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
         'password' => ['required', 'confirmed', Password::defaults()],
-        'role_id' => 'required|exists:roles,id',
+        'role_id' => ['required', 'exists:roles,id'],
     ];
+
+    protected $messages = [
+        'role_id.required' => 'The role field is required.',
+        'role_id.exists' => 'The selected role is invalid.',
+    ];
+
+    public function mount()
+    {
+        $this->role_id = Role::where('name', 'Admin')->first()->id; // Default to Admin role
+    }
 
     public function sortBy($field)
     {
@@ -46,8 +62,14 @@ class UserManager extends Component
 
     public function createUser()
     {
-        $this->resetInputFields();
+        $this->resetValidation();
         $this->showUserModal = true;
+        $this->editingUser = null;
+        $this->name = '';
+        $this->email = '';
+        $this->password = '';
+        $this->password_confirmation = '';
+        $this->role_id = Role::where('name', 'Admin')->first()->id; // Default to Admin role
     }
 
     public function storeUser()
@@ -62,70 +84,45 @@ class UserManager extends Component
         ]);
 
         session()->flash('message', 'User created successfully.');
-        $this->resetInputFields();
         $this->showUserModal = false;
+        $this->resetPage();
+        return redirect()->route('tenant.admin.dashboard');
     }
 
-    public function editUser($id)
+    public function editUser(User $user)
     {
-        $user = User::findOrFail($id);
-        $this->userId = $id;
+        $this->resetValidation();
+        $this->editingUser = $user;
         $this->name = $user->name;
         $this->email = $user->email;
         $this->role_id = $user->role_id;
-
         $this->showUserModal = true;
     }
 
     public function updateUser()
     {
         $this->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users,email,' . $this->userId,
-            'role_id' => 'required|exists:roles,id',
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email,' . $this->editingUser->id],
+            'role_id' => ['required', 'exists:roles,id'],
         ]);
 
-        $user = User::findOrFail($this->userId);
-        $user->update([
+        $this->editingUser->update([
             'name' => $this->name,
             'email' => $this->email,
             'role_id' => $this->role_id,
         ]);
 
         session()->flash('message', 'User updated successfully.');
-        $this->resetInputFields();
         $this->showUserModal = false;
+        return redirect()->route('tenant.admin.dashboard');
     }
 
-    public function deleteUser($id)
+    public function deleteUser(User $user)
     {
-        User::findOrFail($id)->delete();
+        $user->delete();
         session()->flash('message', 'User deleted successfully.');
-    }
-
-    public function resetUserPassword($id)
-    {
-        $user = User::findOrFail($id);
-        $user->password = Hash::make('password'); // Reset to a default password
-        $user->save();
-        session()->flash('message', 'User password reset to 'password'.');
-    }
-
-    public function deactivateUser($id)
-    {
-        $user = User::findOrFail($id);
-        $user->update(['status' => 'inactive']); // Assuming a status column in users table
-        session()->flash('message', 'User deactivated successfully.');
-    }
-
-    public function resetInputFields()
-    {
-        $this->name = '';
-        $this->email = '';
-        $this->password = '';
-        $this->password_confirmation = '';
-        $this->role_id = '';
-        $this->userId = null;
+        $this->resetPage();
     }
 
     public function render()
@@ -133,10 +130,11 @@ class UserManager extends Component
         $users = User::query()
             ->where('name', 'like', '%' . $this->search . '%')
             ->orWhere('email', 'like', '%' . $this->search . '%')
+            ->where('role_id', Role::where('name', 'Admin')->first()->id) // Only show Admin users
             ->orderBy($this->sortField, $this->sortDirection)
             ->paginate($this->perPage);
 
-        $roles = Role::all();
+        $roles = Role::all(); // Fetch all roles for the dropdown
 
         return view('livewire.tenant.user-manager', [
             'users' => $users,

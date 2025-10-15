@@ -2,9 +2,11 @@
 
 declare(strict_types=1);
 
+use App\Http\Controllers\TenantTestController;
 use Illuminate\Support\Facades\Route;
-use Stancl\Tenancy\Middleware\InitializeTenancyByDomain;
-use Stancl\Tenancy\Middleware\PreventAccessFromCentralDomains;
+
+// Temporary route for verifying tenancy
+Route::get('/verify-tenancy', [TenantTestController::class, 'verify']);
 
 /*
 |--------------------------------------------------------------------------

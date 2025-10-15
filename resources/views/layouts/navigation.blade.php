@@ -33,29 +33,27 @@
                             <x-nav-link :href="route('tenant.dashboard')" :active="request()->routeIs('tenant.dashboard')">
                                 {{ __('Dashboard') }}
                             </x-nav-link>
-                            @if (Auth::user()->userRole->name === 'SuperAdmin')
-                                <x-nav-link :href="route('tenant.finance')" :active="request()->routeIs('tenant.finance')">
-                                    {{ __('Finance') }}
-                                </x-nav-link>
-                                <x-nav-link :href="route('tenant.users.manage')" :active="request()->routeIs('tenant.users.manage')">
-                                    {{ __('Manage Users') }}
-                                </x-nav-link>
-                                <x-nav-link :href="route('tenant.users')" :active="request()->routeIs('tenant.users')">
-                                    {{ __('Users') }}
-                                </x-nav-link>
-                                <x-nav-link :href="route('tenant.reports')" :active="request()->routeIs('tenant.reports')">
-                                    {{ __('Reports') }}
-                                </x-nav-link>
-                            @endif
-                            @if (Auth::user()->userRole->name === 'Admin')
+
+                            {{-- Admin & SuperAdmin Links --}}
+                            @if (Auth::user()->userRole->name === 'Admin' || Auth::user()->userRole->name === 'SuperAdmin')
                                 <x-nav-link :href="route('tenant.inventory')" :active="request()->routeIs('tenant.inventory')">
                                     {{ __('Inventory') }}
                                 </x-nav-link>
                                 <x-nav-link :href="route('tenant.sales')" :active="request()->routeIs('tenant.sales')">
                                     {{ __('Sales') }}
                                 </x-nav-link>
-                                <x-nav-link :href="route('tenant.invoices')" :active="request()->routeIs('tenant.invoices')">
-                                    {{ __('Invoices') }}
+                            @endif
+
+                            {{-- SuperAdmin Only Links --}}
+                            @if (Auth::user()->userRole->name === 'SuperAdmin')
+                                <x-nav-link :href="route('tenant.finance')" :active="request()->routeIs('tenant.finance')">
+                                    {{ __('Finance') }}
+                                </x-nav-link>
+                                <x-nav-link :href="route('tenant.users.manage')" :active="request()->routeIs('tenant.users.manage')">
+                                    {{ __('Users') }}
+                                </x-nav-link>
+                                <x-nav-link :href="route('tenant.reports')" :active="request()->routeIs('tenant.reports')">
+                                    {{ __('Reports') }}
                                 </x-nav-link>
                             @endif
                         @else

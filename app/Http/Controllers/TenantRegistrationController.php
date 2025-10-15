@@ -52,7 +52,7 @@ class TenantRegistrationController extends Controller
         ]);
 
         // Attach domain to tenant
-        $tenant->domains()->create(['domain' => $domain . '.' . config('tenancy.central_domains')[0]]);
+        $tenant->domains()->create(['domain' => $domain . '.salsabeelistore.shop']);
 
         // Run tenant migrations and create admin user in tenant DB
         $tenant->run(function () use ($request) {

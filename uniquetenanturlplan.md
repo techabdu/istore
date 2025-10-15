@@ -7,10 +7,10 @@ This document outlines the steps required to configure the iStore application to
 ### ✅ Plan & Progress
 
 - [x] **Step 1: Configure Wildcard DNS Record**
-- [ ] **Step 2: Update Nginx Configuration**
-- [ ] **Step 3: Update Tenancy Middleware**
-- [ ] **Step 4: Update Tenant Registration Logic**
-- [ ] **Step 5: Obtain Wildcard SSL Certificate**
+- [x] **Step 2: Update Nginx Configuration**
+- [x] **Step 3: Update Tenancy Middleware**
+- [x] **Step 4: Update Tenant Registration Logic**
+- [x] **Step 5: Obtain Wildcard SSL Certificate**
 
 ---
 

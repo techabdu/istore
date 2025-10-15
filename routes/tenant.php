@@ -5,26 +5,14 @@ declare(strict_types=1);
 use App\Http\Controllers\TenantTestController;
 use Illuminate\Support\Facades\Route;
 
-// Temporary route for verifying tenancy
-Route::get('/verify-tenancy', [TenantTestController::class, 'verify']);
-
-/*
-|--------------------------------------------------------------------------
-| Tenant Routes
-|--------------------------------------------------------------------------
-|
-| Here you can register the tenant routes for your application.
-| These routes are loaded by the TenantRouteServiceProvider.
-|
-| Feel free to customize them however you want. Good luck!
-|
-*/
-
 Route::middleware([
     'web',
     InitializeTenancyByDomain::class,
     PreventAccessFromCentralDomains::class,
 ])->group(function () {
+    // Temporary route for verifying tenancy
+    Route::get('/verify-tenancy', [\App\Http\Controllers\TenantTestController::class, 'verify']);
+
     require __DIR__.'/auth.php';
 
     Route::get('/dashboard', function () {

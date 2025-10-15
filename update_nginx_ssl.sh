@@ -1,8 +1,9 @@
 #!/bin/bash
-# This script updates the Nginx configuration to use the new SSL certificate.
+# This script updates the Nginx configuration for SSL using a robust heredoc.
 
-# 1. Define the final HTTPS configuration content
-CONFIG_CONTENT="# Redirect all HTTP traffic to HTTPS
+# 1. Overwrite the existing configuration file using a "here document"
+sudo tee /etc/nginx/sites-available/istore > /dev/null <<'EOF'
+# Redirect all HTTP traffic to HTTPS
 server {
     listen 80;
     server_name .salsabeelistore.shop;
@@ -18,8 +19,8 @@ server {
     # SSL Configuration - using the new wildcard certificate
     ssl_certificate /etc/letsencrypt/live/salsabeelistore.shop-0001/fullchain.pem;
     ssl_certificate_key /etc/letsencrypt/live/salsabeelistore.shop-0001/privkey.pem;
-    include /etc/letsencrypt/options-ssl-nginx.conf; # Recommended by Certbot
-    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # Recommended by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf;
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
 
     index index.php index.html index.htm;
 
@@ -34,15 +35,15 @@ server {
 
     location ~ /\.ht {
         deny all;
-    }"
+    }
+}
+EOF
 
-# 2. Overwrite the existing configuration file
-echo "$CONFIG_CONTENT" | sudo tee /etc/nginx/sites-available/istore > /dev/null
-
-# 3. Test the new configuration
+# 2. Test the new configuration
+echo "Testing new Nginx configuration..."
 sudo nginx -t
 
-# 4. Restart Nginx if the test is successful
+# 3. Restart Nginx if the test is successful
 if [ $? -eq 0 ]; then
     echo "Configuration test passed. Restarting Nginx..."
     sudo systemctl restart nginx

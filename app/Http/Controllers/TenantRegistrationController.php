@@ -72,8 +72,8 @@ class TenantRegistrationController extends Controller
             ]);
         });
 
-        // Redirect to tenant's dashboard
-        return redirect('http://' . $domain . '.' . config('tenancy.central_domains')[0] . '/login')
+        // Redirect to tenant's login page
+        return redirect('https://' . $domain . '.salsabeelistore.shop/login')
             ->with('status', 'Tenant registered successfully. Please log in.');
     }
 }

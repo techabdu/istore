@@ -15,16 +15,16 @@ class DeveloperSuperAdminSeeder extends Seeder
      */
     public function run(): void
     {
-        // First, find the SuperAdmin role.
-        $superAdminRole = Role::where('name', 'SuperAdmin')->first();
+        // Find the Developer role.
+        $developerRole = Role::where('name', 'Developer')->first();
 
         // If the role exists, create the user with the correct role_id.
-        if ($superAdminRole) {
+        if ($developerRole) {
             User::create([
                 'name' => 'Developer Super Admin',
                 'email' => 'dev@istore.com',
                 'password' => Hash::make('password'),
-                'role_id' => $superAdminRole->id, // Use the numeric ID here
+                'role_id' => $developerRole->id, // Use the numeric ID here
             ]);
         }
     }

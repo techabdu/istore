@@ -10,6 +10,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     {{ __("You're logged in!") }}
+                    <h1>This is tenant dashboard</h1>
                     @livewire('tenant.dashboard-metrics', ['tenantId' => tenant('id')])
                 </div>
             </div>

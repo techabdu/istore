@@ -247,7 +247,7 @@
                 <a href="#" class="hover:text-white transition-colors duration-200">Terms of Service</a>
                 <a href="#" class="hover:text-white transition-colors duration-200">Contact Us</a>
             </div>
-            <p>&copy; .</p>
+            <p>&copy; 2025 techabdu. All rights reserved.</p>
         </div>
     </footer>
     <!-- End Footer -->

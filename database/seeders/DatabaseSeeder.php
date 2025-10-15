@@ -13,9 +13,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        // RoleSeeder must run first so that the roles exist for other seeders.
         $this->call([
-            DeveloperSuperAdminSeeder::class,
             RoleSeeder::class,
+            DeveloperSuperAdminSeeder::class,
         ]);
 
         User::factory()->create([

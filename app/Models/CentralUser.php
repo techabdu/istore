@@ -45,16 +45,18 @@ class CentralUser extends Authenticatable
         'remember_token',
     ];
 
-    /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
-     */
-    protected function casts(): array
-    {
-        return [
+        protected $casts = [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    
+        public function userRole()
+        {
+            return $this->belongsTo(Role::class, 'role_id');
+        }
+    
+        public function hasRole($role)
+        {
+            return $this->userRole && $this->userRole->name === $role;
+        }
     }
-}

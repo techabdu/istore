@@ -62,6 +62,12 @@ class TenantRegistrationController extends Controller
                 '--force' => true,
             ]);
 
+            // Seed tenant database with roles and default admin
+            \Artisan::call('db:seed', [
+                '--class' => 'Database\\Seeders\\TenantDatabaseSeeder',
+                '--force' => true,
+            ]);
+
             // Create tenant Super Admin user
             $superAdminRole = Role::where('name', 'SuperAdmin')->first();
             User::create([

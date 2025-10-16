@@ -14,8 +14,8 @@ return [
     */
 
     'defaults' => [
-        'guard' => env('AUTH_GUARD', 'web'),
-        'passwords' => env('AUTH_PASSWORD_BROKER', 'users'),
+        'guard' => env('AUTH_GUARD', 'central_web'),
+        'passwords' => env('AUTH_PASSWORD_BROKER', 'central_users'),
     ],
 
     /*
@@ -35,41 +35,47 @@ return [
     |
     */
 
-    'guards' => [
-        'web' => [
-            'driver' => 'session',
-            'provider' => 'users',
-        ],
-    ],
+        'guards' => [
 
-    /*
-    |--------------------------------------------------------------------------
-    | User Providers
-    |--------------------------------------------------------------------------
-    |
-    | All authentication guards have a user provider, which defines how the
-    | users are actually retrieved out of your database or other storage
-    | system used by the application. Typically, Eloquent is utilized.
-    |
-    | If you have multiple user tables or models you may configure multiple
-    | providers to represent the model / table. These providers may then
-    | be assigned to any extra authentication guards you have defined.
-    |
-    | Supported: "database", "eloquent"
-    |
-    */
+            'central_web' => [
 
-    'providers' => [
-        'users' => [
-            'driver' => 'eloquent',
-            'model' => env('AUTH_MODEL', App\Models\User::class),
+                'driver' => 'session',
+
+                'provider' => 'central_users',
+
+            ],
+
+            'web' => [
+
+                'driver' => 'session',
+
+                'provider' => 'users',
+
+            ],
+
         ],
 
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
-    ],
+    
+
+        'providers' => [
+
+            'central_users' => [
+
+                'driver' => 'eloquent',
+
+                'model' => App\Models\CentralUser::class,
+
+            ],
+
+            'users' => [
+
+                'driver' => 'eloquent',
+
+                'model' => env('AUTH_MODEL', App\Models\User::class),
+
+            ],
+
+    
 
     /*
     |--------------------------------------------------------------------------

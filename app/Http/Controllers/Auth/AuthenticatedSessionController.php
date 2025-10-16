@@ -26,33 +26,17 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request): RedirectResponse
     {
-        $request->authenticate();
+        $request->authenticate('tenant_web'); // Use the tenant_web guard
         $request->session()->regenerate();
-        $user = Auth::user();
+        $user = Auth::guard('tenant_web')->user(); // Get user from tenant_web guard
 
-        if (tenancy()->tenant) {
-            // User is in a tenant context
-            if ($user->userRole->name === 'SuperAdmin') {
-                return redirect()->route('tenant.dashboard');
-            } elseif ($user->userRole->name === 'Admin') {
-                return redirect()->route('tenant.admin.dashboard');
-            }
-            // Fallback for other tenant roles or unexpected scenarios
-            return redirect()->route('tenant.dashboard'); // Default tenant dashboard
-        } else {
-            // User is in a central context
-            if ($user->userRole->name === 'Developer') {
-                return redirect()->route('developer.dashboard');
-            } elseif ($user->userRole->name === 'SuperAdmin') { // This is for CENTRAL SuperAdmin
-                return redirect()->route('dashboard'); // Central dashboard
-            }
-            // If a user logs in centrally and is not a Developer or Central SuperAdmin,
-            // it means they are likely a tenant user trying to log in centrally.
-            Auth::guard('web')->logout();
-            $request->session()->invalidate();
-            $request->session()->regenerateToken();
-            return redirect()->route('login')->withErrors(['email' => 'Tenant users must log in via their tenant domain.']);
+        if ($user->userRole->name === 'SuperAdmin') {
+            return redirect()->route('tenant.dashboard');
+        } elseif ($user->userRole->name === 'Admin') {
+            return redirect()->route('tenant.admin.dashboard');
         }
+        // Fallback for other tenant roles or unexpected scenarios
+        return redirect()->route('tenant.dashboard'); // Default tenant dashboard
     }
 
     /**
@@ -60,7 +44,7 @@ class AuthenticatedSessionController extends Controller
      */
     public function destroy(Request $request): RedirectResponse
     {
-        Auth::guard('web')->logout();
+        Auth::guard('tenant_web')->logout();
 
         $request->session()->invalidate();
 

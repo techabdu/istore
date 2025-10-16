@@ -10,10 +10,10 @@ This plan outlines the steps to refactor the authentication and multi-tenancy ar
 - [x] **Step 2: Separate User Models & Migrations**
 - [x] **Step 3: Implement Central Authentication**
 - [x] **Step 4: Implement Tenant Authentication**
-- [ ] **Step 5: Refactor Tenant Registration Flow**
-- [ ] **Step 6: Refactor Dashboard Redirections**
-- [ ] **Step 7: Update Seeders and Factories**
-- [ ] **Step 8: Clean Up & Verification**
+- [x] **Step 5: Refactor Tenant Registration Flow**
+- [x] **Step 6: Refactor Dashboard Redirections**
+- [x] **Step 7: Update Seeders and Factories**
+- [x] **Step 8: Clean Up & Verification**
 
 ---
 

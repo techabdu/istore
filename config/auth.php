@@ -45,35 +45,69 @@ return [
 
             ],
 
-            'web' => [
+                    'web' => [
 
-                'driver' => 'session',
+                        'driver' => 'session',
 
-                'provider' => 'users',
+                        'provider' => 'users',
 
-            ],
+                    ],
 
-        ],
+                    'tenant_web' => [
 
-    
+                        'driver' => 'session',
 
-        'providers' => [
+                        'provider' => 'tenant_users',
 
-            'central_users' => [
+                    ],
 
-                'driver' => 'eloquent',
+            
 
-                'model' => App\Models\CentralUser::class,
+                ],
 
-            ],
+            
 
-            'users' => [
+                'providers' => [
 
-                'driver' => 'eloquent',
+            
 
-                'model' => env('AUTH_MODEL', App\Models\User::class),
+                    'central_users' => [
 
-            ],
+            
+
+                        'driver' => 'eloquent',
+
+            
+
+                        'model' => App\Models\CentralUser::class,
+
+            
+
+                    ],
+
+            
+
+                    'users' => [
+
+            
+
+                        'driver' => 'eloquent',
+
+            
+
+                        'model' => env('AUTH_MODEL', App\Models\User::class),
+
+            
+
+                    ],
+
+                    'tenant_users' => [
+
+                        'driver' => 'eloquent',
+
+                        'model' => App\Models\User::class,
+
+                    ],
 
     
 

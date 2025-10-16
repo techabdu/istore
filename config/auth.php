@@ -35,81 +35,41 @@ return [
     |
     */
 
-        'guards' => [
+    'guards' => [
+        'central_web' => [
+            'driver' => 'session',
+            'provider' => 'central_users',
+        ],
+        'web' => [
+            'driver' => 'session',
+            'provider' => 'users',
+        ],
+        'tenant_web' => [
+            'driver' => 'session',
+            'provider' => 'tenant_users',
+        ],
+    ],
 
-            'central_web' => [
+    /*
+    |--------------------------------------------------------------------------
+    | User Providers
+    |--------------------------------------------------------------------------
+    */
 
-                'driver' => 'session',
-
-                'provider' => 'central_users',
-
-            ],
-
-                    'web' => [
-
-                        'driver' => 'session',
-
-                        'provider' => 'users',
-
-                    ],
-
-                    'tenant_web' => [
-
-                        'driver' => 'session',
-
-                        'provider' => 'tenant_users',
-
-                    ],
-
-            
-
-                ],
-
-            
-
-                'providers' => [
-
-            
-
-                    'central_users' => [
-
-            
-
-                        'driver' => 'eloquent',
-
-            
-
-                        'model' => App\Models\CentralUser::class,
-
-            
-
-                    ],
-
-            
-
-                    'users' => [
-
-            
-
-                        'driver' => 'eloquent',
-
-            
-
-                        'model' => env('AUTH_MODEL', App\Models\User::class),
-
-            
-
-                    ],
-
-                    'tenant_users' => [
-
-                        'driver' => 'eloquent',
-
-                        'model' => App\Models\User::class,
-
-                    ],
-
-    
+    'providers' => [
+        'central_users' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\CentralUser::class,
+        ],
+        'users' => [
+            'driver' => 'eloquent',
+            'model' => env('AUTH_MODEL', App\Models\User::class),
+        ],
+        'tenant_users' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\User::class,
+        ],
+    ],
 
     /*
     |--------------------------------------------------------------------------

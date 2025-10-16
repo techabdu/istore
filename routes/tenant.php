@@ -11,8 +11,6 @@ Route::middleware([
     PreventAccessFromCentralDomains::class,
     'auth:tenant_web',
 ])->group(function () {
-    // Temporary route for verifying tenancy
-    Route::get('/verify-tenancy', [\App\Http\Controllers\TenantTestController::class, 'verify']);
 
     require __DIR__.'/auth.php';
 

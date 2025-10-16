@@ -76,3 +76,4 @@ class TenantRegistrationController extends Controller
         return redirect('https://' . $domain . '.salsabeelistore.shop/login')
             ->with('status', 'Tenant registered successfully. Please log in.');
     }
+}

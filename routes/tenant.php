@@ -9,10 +9,9 @@ Route::middleware([
     'web',
     InitializeTenancyByDomain::class,
     PreventAccessFromCentralDomains::class,
-    'auth:tenant_web',
 ])->group(function () {
 
-    require __DIR__.'/auth.php';
+    require __DIR__.'/tenant_auth.php';
 
     Route::get('/dashboard', function () {
         return view('tenant.dashboard');

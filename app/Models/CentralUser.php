@@ -50,11 +50,6 @@ class CentralUser extends Authenticatable
             'password' => 'hashed',
         ];
     
-        public function userRole()
-        {
-            return $this->belongsTo(Role::class, 'role_id');
-        }
-    
         public function hasRole($role)
         {
             return $this->userRole && $this->userRole->name === $role;

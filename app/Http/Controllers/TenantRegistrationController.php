@@ -54,21 +54,8 @@ class TenantRegistrationController extends Controller
         // Attach domain to tenant
         $tenant->domains()->create(['domain' => $domain . '.salsabeelistore.shop']);
 
-        // Run tenant migrations and create admin user in tenant DB
+        // Create tenant Super Admin user
         $tenant->run(function () use ($request) {
-            // Migrate tenant database
-            \Artisan::call('migrate', [
-                '--path' => 'database/migrations/tenant',
-                '--force' => true,
-            ]);
-
-            // Seed tenant database with roles and default admin
-            \Artisan::call('db:seed', [
-                '--class' => 'Database\\Seeders\\TenantDatabaseSeeder',
-                '--force' => true,
-            ]);
-
-            // Create tenant Super Admin user
             $superAdminRole = Role::where('name', 'SuperAdmin')->first();
             User::create([
                 'name' => $request->full_name,
